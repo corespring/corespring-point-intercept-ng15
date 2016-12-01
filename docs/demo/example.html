@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link href="//fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <script src="pie.js" type="text/javascript"></script>
+    <script src="controllers.js" type="text/javascript"></script>
+    <script src="//cdn.mathjax.org/mathjax/2.7-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <script type="text/javascript">
+      window.pie = window.pie || {};
+      window.pie.env = {mode: 'gather'};
+      window.pie.model = {'pies':[{'id':'1','pie':{'name':'corespring-point-intercept-ng15','version':'1.0.0'},'correctResponse':['0,0','1,1','2,2','3,3'],'allowPartialScoring':false,'partialScoring':[{}],'feedback':{'correctFeedbackType':'none','partialFeedbackType':'none','incorrectFeedbackType':'none'},'model':{'config':{'graphTitle':'','graphWidth':500,'graphHeight':500,'maxPoints':'','labelsType':'present','pointLabels':['A','B','C','D'],'domainLabel':'','domainMin':-10,'domainMax':10,'domainStepValue':1,'domainSnapValue':1,'domainLabelFrequency':1,'domainGraphPadding':50,'rangeLabel':'','rangeMin':-10,'rangeMax':10,'rangeStepValue':1,'rangeSnapValue':1,'rangeLabelFrequency':1,'rangeGraphPadding':50,'sigfigs':-1,'showCoordinates':false,'showPointLabels':true,'showInputs':true,'showAxisLabels':true,'showFeedback':true}}}]};
+      window.pie.session = [];
+      
+      document.addEventListener('pie.player-ready', function(event){
+        var player = event.target;
+        var pieController = new pie.Controller(window.pie.model, window['550d61647d25bb15ff73e26eb6c38c34']);
+        
+        player.controller = pieController;
+        player.env = window.pie.env;
+        player.session = window.pie.session;
+        
+        var panel = document.querySelector('pie-control-panel');
+        panel.env = window.pie.env;
+        
+        pieController.getLanguages().then(function(l) {
+          panel.languages = l;
+        });
+      
+        panel.addEventListener('envChanged', function(event){
+          
+          player.env = event.target.env;
+          
+          if (event.target.env.mode === 'evaluate') {
+            player.getOutcome().then(function(outcome) {
+              panel.score = ' Score: ' + outcome.summary.percentage + '% Points: ' + outcome.summary.points + '/' + outcome.summary.maxPoints;
+            });
+          } else {
+            panel.score = '';
+          }
+      
+        });
+      });
+      
+    </script>
+  </head>
+  <body>
+    <pie-control-panel></pie-control-panel>
+    <pie-player><corespring-point-intercept-ng15 pie-id="1"></corespring-point-intercept-ng15></pie-player>
+  </body>
+</html>
