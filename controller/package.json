@@ -4,6 +4,6 @@
   "private": true,
   "main": "src/controller.js",
   "dependencies": {
-    "corespring-legacy-point-intercept": "PieLabs/corespring-legacy-point-intercept"
+    "corespring-legacy-point-intercept": "corespring/corespring-legacy-point-intercept"
   }
 }
