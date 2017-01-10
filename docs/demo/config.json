@@ -1,11 +1,14 @@
 {
-  "pies": [
+  "langs": [
+    "en-US"
+  ],
+  "elements": {
+    "corespring-point-intercept-ng15": "../.."
+  },
+  "models": [
     {
       "id": "1",
-      "pie": {
-        "name": "corespring-point-intercept-ng15",
-        "version": "1.0.0"
-      },
+      "element": "corespring-point-intercept-ng15",
       "correctResponse": [
         "0,0",
         "1,1",
